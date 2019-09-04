@@ -1,10 +1,10 @@
 {
-  "name": "eslint-plugin-simple-import-sort",
+  "name": "@anilanar/eslint-plugin-import-userlike",
   "version": "4.0.0",
   "license": "MIT",
-  "author": "Simon Lydell",
-  "repository": "lydell/eslint-plugin-simple-import-sort",
-  "description": "Easy autofixable import sorting",
+  "author": "Simon Lydell, Anil Anar",
+  "repository": "anilanar/eslint-plugin-import-userlike",
+  "description": "Autofixable import sorting that is used @Userlike",
   "main": "src/index.js",
   "files": [
     "src"
@@ -35,19 +35,19 @@
     "validate-npm-package-name": "^3.0.0"
   },
   "devDependencies": {
-    "@typescript-eslint/parser": "1.10.2",
-    "babel-eslint": "10.0.1",
+    "@typescript-eslint/parser": "2.1.1-alpha.4",
+    "babel-eslint": "10.0.3",
     "cross-spawn": "6.0.5",
     "doctoc": "1.4.0",
-    "eslint": "5.16.0",
+    "eslint": "6.3.0",
     "eslint-config-lydell": "14.0.0",
-    "eslint-plugin-import": "2.17.3",
-    "eslint-plugin-jest": "22.6.4",
+    "eslint-plugin-import": "2.18.2",
+    "eslint-plugin-jest": "22.16.0",
     "eslint-plugin-prettier": "3.1.0",
-    "eslint-plugin-vue": "5.2.2",
-    "jest": "24.8.0",
+    "eslint-plugin-vue": "5.2.3",
+    "jest": "24.9.0",
     "prettier": "1.18.2",
-    "typescript": "3.5.2"
+    "typescript": "3.6.2"
   },
   "peerDependencies": {
     "eslint": ">=5.0.0"
