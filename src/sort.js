@@ -795,7 +795,7 @@ function isSideEffectImport(importNode, sourceCode) {
   );
 }
 
-const PACKAGE_REGEX = /^(?:@[^/]+\/)?[^/]+/;
+const PACKAGE_REGEX = /^(?!@ul\/)(?:@[^/]+\/)?[^/]+/;
 
 // import fs from "fs";
 // import { compose } from "lodash/fp";

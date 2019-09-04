@@ -1733,6 +1733,49 @@ const typescriptTests = {
   ],
 };
 
+const userlikeTests = {
+  valid: [],
+  invalid: [
+    {
+      code: input`
+          |import React from "react";
+          |import Button from "../Button";
+          |
+          |import styles from "./styles.css";
+          |import { getUser } from "../../api";
+          |import { foo } from "@ul/foo";
+          |
+          |import PropTypes from "prop-types";
+          |import classnames from "classnames";
+          |import { truncate, formatNumber } from "../../utils";
+          |
+          |function pluck<T, K extends keyof T>(o: T, names: K[]): T[K][] {
+          |  return names.map(n => o[n]);
+          |}
+      `,
+      output: actual => {
+        expect(actual).toMatchInlineSnapshot(`
+          |import classnames from "classnames";
+          |import PropTypes from "prop-types";
+          |import React from "react";
+          |
+          |import { foo } from "@ul/foo";
+          |
+          |import { getUser } from "../../api";
+          |import { formatNumber,truncate } from "../../utils";
+          |import Button from "../Button";
+          |import styles from "./styles.css";
+          |
+          |function pluck<T, K extends keyof T>(o: T, names: K[]): T[K][] {
+          |  return names.map(n => o[n]);
+          |}
+        `);
+      },
+      errors: 1,
+    },
+  ],
+};
+
 const javascriptRuleTester = new RuleTester({
   parserOptions: { ecmaVersion: 2015, sourceType: "module" },
 });
@@ -1764,4 +1807,10 @@ typescriptRuleTester.run(
   "TypeScript-specific",
   plugin.rules.sort,
   typescriptTests
+);
+
+typescriptRuleTester.run(
+  "TypeScript-specific",
+  plugin.rules.sort,
+  userlikeTests
 );
