@@ -1,8 +1,8 @@
 {
-  "name": "@anilanar/eslint-plugin-import-userlike",
-  "version": "4.0.0",
+  "name": "eslint-plugin-import-userlike",
+  "version": "1.0.0",
   "license": "MIT",
-  "author": "Simon Lydell, Anil Anar",
+  "author": "Anil Anar, Simon Lydell",
   "repository": "anilanar/eslint-plugin-import-userlike",
   "description": "Autofixable import sorting that is used @Userlike",
   "main": "src/index.js",
@@ -22,14 +22,14 @@
   ],
   "scripts": {
     "eslint": "eslint .",
-    "eslint:fix": "npm run eslint -- --fix",
+    "eslint:fix": "yarn eslint -- --fix",
     "eslint:examples": "eslint --rulesdir src --no-ignore --fix-dry-run --format json --report-unused-disable-directives examples --ext .js,.ts,.vue",
     "prettier": "prettier --write \"*.md\"",
     "doctoc": "doctoc README.md",
     "jest": "jest",
     "coverage": "jest --coverage",
-    "test": "npm run eslint && npm run coverage",
-    "prepublishOnly": "npm test"
+    "test": "yarn eslint && yarn coverage",
+    "prepublishOnly": "yarn test"
   },
   "dependencies": {
     "validate-npm-package-name": "^3.0.0"
