@@ -1501,7 +1501,9 @@ const flowTests = {
       code: input`
           |import react from "react"
           |import type {Z} from "Z";
-          |import './global.css';
+          |import './foo.css';
+          |import 'bar.scss';
+          |import '../../quu.scss';
           |import type {X} from "X";
           |import {truncate, typeof T, type Y, pluralize} from "./utils"
           |import type B from "./B";
@@ -1512,8 +1514,6 @@ const flowTests = {
       `,
       output: actual => {
         expect(actual).toMatchInlineSnapshot(`
-          |import './global.css';
-          |
           |import react from "react"
           |
           |import typeof A from "A";
@@ -1525,6 +1525,10 @@ const flowTests = {
           |import type B from "./B";
           |import typeof D from "./D";
           |import {type Y, typeof T, pluralize,truncate} from "./utils"
+          |
+          |import './foo.css';
+          |import 'bar.scss';
+          |import '../../quu.scss';
         `);
       },
       errors: 1,

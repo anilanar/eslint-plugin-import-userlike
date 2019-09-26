@@ -170,7 +170,6 @@ exports[`examples readme-order.js 1`] = `
 // Side effect imports. (These are not sorted internally.)
 import "./setup";
 import "some-polyfill";
-import "./global.css";
 
 // Packages.
 import type A from "an-npm-package";
@@ -208,6 +207,8 @@ import {
   m as tie, // But do use the \`as\` name in case of a tie.
   n,
 } from "./x";
+
+import "./global.css";
 
 `;
 

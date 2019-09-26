@@ -70,13 +70,16 @@ function maybeReportSorting(imports, context) {
 }
 
 function printSortedImports(importItems, sourceCode) {
+  const styleImports = [];
   const sideEffectImports = [];
   const packageImports = [];
   const relativeImports = [];
   const restImports = [];
 
   for (const item of importItems) {
-    if (item.group === "sideEffect") {
+    if (item.group === "style") {
+      styleImports.push(item);
+    } else if (item.group === "sideEffect") {
       sideEffectImports.push(item);
     } else if (item.group === "package") {
       packageImports.push(item);
@@ -92,6 +95,7 @@ function printSortedImports(importItems, sourceCode) {
     sortImportItems(packageImports),
     sortImportItems(restImports),
     sortImportItems(relativeImports),
+    styleImports,
   ];
 
   const newline = guessNewline(sourceCode);
@@ -784,6 +788,13 @@ function isImportSpecifier(node) {
   return node.type === "ImportSpecifier";
 }
 
+const STYLE_REGEX = /\.s?css$/;
+function isStyleImport(importNode, sourceCode, importPath) {
+  return (
+    isSideEffectImport(importNode, sourceCode) && STYLE_REGEX.test(importPath)
+  );
+}
+
 // import "setup"
 // But not: import {} from "setup"
 // And not: import type {} from "setup"
@@ -861,7 +872,10 @@ function getGroupAndSource(importNode, sourceCode) {
     index >= 0
       ? [rawSource.slice(index + 1), rawSource.slice(0, index + 1)]
       : [rawSource, ""];
-  const group = isSideEffectImport(importNode, sourceCode)
+
+  const group = isStyleImport(importNode, sourceCode, source)
+    ? "style"
+    : isSideEffectImport(importNode, sourceCode)
     ? "sideEffect"
     : isPackageImport(source)
     ? "package"
