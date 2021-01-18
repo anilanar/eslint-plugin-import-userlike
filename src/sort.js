@@ -801,7 +801,7 @@ function isStyleImport(importNode, sourceCode, importPath) {
 function isSideEffectImport(importNode, sourceCode) {
   return (
     importNode.specifiers.length === 0 &&
-    !importNode.importKind &&
+    (!importNode.importKind || importNode.importKind === "value") &&
     !isPunctuator(sourceCode.getFirstToken(importNode, { skip: 1 }), "{")
   );
 }
